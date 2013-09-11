@@ -162,7 +162,7 @@ define(function(require, exports, module){
 			var slideList = (function(){
 				var arr = [];
 				$(params).each(function(index, obj){
-					var bg = $("<div class='slide-part' style='background:url("+obj.bg+") center center no-repeat; background-size: 100% 100%;'></div>");
+					var bg = $("<div class='slide-part' style='background:url("+obj.bg+") center center no-repeat; '></div>");
 					//var bg = $("<div class='slide-part' ></div>");
 					/*(function createBg(){
 						var bgframe = $("<img src='"+obj.bg+"' style='position:absoulte; left:0; top:0;width:100%; height:100%;' />");
