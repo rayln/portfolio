@@ -63,3 +63,11 @@ body{
 .pf-main-body > .about{
 	
 }
+
+
+/** Control **/
+.store-button{
+	padding: 8px 45px 8px 15px; cursor: pointer;
+	color: #0099cc;
+	background: url("../images/button-arrow.png") center right no-repeat; font-size: 24px; display: inline-block; background-color: white;
+}

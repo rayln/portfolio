@@ -2,8 +2,26 @@
 	height: 100%; width: 100%; position: relative; overflow: hidden;
 }
 .slide-body > div{
-	height: 100%; width: 100%; position: absolute;
+	position: absolute;
 }
 .slide-body > .slide-part{
-	
+	height: 100%; width: 100%; padding: 76px; box-sizing:border-box ;
+}
+
+/** navigate **/
+.slide-body > .slide-navigate{
+	bottom: 40px; 
+}
+.slide-body > .slide-navigate > .slide-navigate-pointer{
+	border: 3px solid white; border-radius: 17px; display: inline-block; cursor: pointer; /* margin: 0 15px; width: 27px; height: 27px;  */
+}
+.slide-body > .slide-navigate > .slide-navigate-pointer.selected{
+	background-color: white; cursor: default;
+}
+
+.slide-body > .slide-arrow-left{
+	width: 36px; height: 77px; background: url("../images/slide/slide-left.png"); cursor: pointer;
+}
+.slide-body > .slide-arrow-right{
+	width: 36px; height: 77px; background: url("../images/slide/slide-right.png"); cursor: pointer;
 }

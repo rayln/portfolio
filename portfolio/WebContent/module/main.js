@@ -10,7 +10,7 @@ seajs.use(['./module/home.js','jquerymin','jqueryfn'], function(home, jquery){
 		]
 	});
 	
-	$(home.result).each(function(index, obj){
+	/*$(home.result).each(function(index, obj){
 		$("#mainHome").append(obj);
-	});
+	});*/
 });

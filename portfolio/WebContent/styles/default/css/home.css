@@ -5,6 +5,21 @@
 .pf-main-body > .home > .body{
 	height: 80%; 
 }
+.pf-main-body > .home > .body .content{
+	width:1200px; height: 100%; margin: auto;
+}
+.pf-main-body > .home > .body .content > .content-left{
+	width: 380px; height: 100%; display: table; float: left; margin-left: 50px;
+}
+.pf-main-body > .home > .body .content > .content-right{
+	width: 770px; height: 100%; background-size: auto 85%; float: right;
+}
+.pf-main-body .goldfish{
+	background: url("../images/home/goldfish-comp.png") left center no-repeat;
+}
+.pf-main-body .moonrise{
+	background: url("../images/home/nexus-10.png") left center no-repeat;
+}
 .pf-main-body > .home > .foot{
 	height: 20%;
 }
