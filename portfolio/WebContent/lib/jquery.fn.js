@@ -128,7 +128,7 @@ define(function(require, exports, module){
 					marginLeft: 15, 
 					marginRight: 15,
 					pointerWidth: 0,
-					border: 3
+					border: 2
 				},
 				arrow:{
 					left:{
