@@ -1,0 +1,10 @@
+/** home  **/
+.pf-main-body > .home{
+	
+}
+.pf-main-body > .home > .body{
+	height: 80%; 
+}
+.pf-main-body > .home > .foot{
+	height: 20%;
+}

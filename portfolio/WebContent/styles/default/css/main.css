@@ -1,0 +1,65 @@
+@font-face {
+  	font-family: "Roboto Light";
+  	src: url("../font/Roboto-Light.ttf");
+}
+@font-face {
+  	font-family: "Roboto Regular";
+  	src: url("../font/Roboto-Regular.ttf");
+}
+/** global style **/
+div, p, ul, li, span{
+	font-family: "Roboto Light";
+}
+html, body{
+	height: 100%;
+}
+body{
+	margin: 0; padding: 0;
+}
+/** title  **/
+.pf-main-title{
+	position: absolute;left: 0; top: 0; width: 100%; z-index: 100;
+}
+.pf-main-title > .frame{
+	background-color: #1d1d1d;
+}
+.pf-main-title > .frame > .body{
+	height: 65px; color: white; width: 1200px; margin: auto;
+}
+.pf-main-title > .frame > .body > .name{
+	height: 42px; font-size: 18px; font-family: Roboto Light; float: left; margin:15px 15px 5px; cursor: pointer;
+}
+.pf-main-title > .frame > .body > .name > span{
+	font-family: Roboto Regular;
+}
+
+.pf-main-title > .frame > .body > .tab{
+	float: right; width: 800px; height: 42px; margin: 15px 15px 5px; font-family: Roboto Light; display: table; cursor: pointer;
+}
+.pf-main-title > .frame > .body > .tab > span{
+	display: table-cell; vertical-align: middle; text-align: center;
+}
+.pf-main-title > .foot{
+	height: 11px; 
+}
+.pf-main-title > .foot > span{
+	display: inline-block; height: 11px; background-color: #1d1d1d;
+}
+.pf-main-title > .foot > .point{
+	width: 20px; background-image: url("../images/main/title-arrow.png"); background-color: transparent;
+}
+
+/** tips  **/
+.pf-main-tips{
+	
+}
+
+/** body  **/
+.pf-main-body, .pf-main-body > div {
+	height: 100%;
+}
+
+/** about  **/
+.pf-main-body > .about{
+	
+}

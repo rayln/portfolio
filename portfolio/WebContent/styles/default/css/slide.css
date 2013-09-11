@@ -1,0 +1,9 @@
+.slide-body{
+	height: 100%; width: 100%; position: relative; overflow: hidden;
+}
+.slide-body > div{
+	height: 100%; width: 100%; position: absolute;
+}
+.slide-body > .slide-part{
+	
+}
