@@ -1,0 +1,11 @@
+.button{
+	border: 2px solid black;
+	padding: 8px 20px; display: inline-block; cursor: pointer; position: relative;
+}
+
+.button > .hover{
+	left: 0; top: 0; height: 100%; background-color: black; position: absolute;
+}
+.button > .text{
+	position: relative; font-size: 14px;
+}

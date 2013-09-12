@@ -1,3 +1,5 @@
+@IMPORT url("button.css");
+
 @font-face {
   	font-family: "Roboto Light";
   	src: url("../font/Roboto-Light.ttf");
@@ -56,7 +58,7 @@ body{
 
 /** body  **/
 .pf-main-body, .pf-main-body > div {
-	height: 100%;
+	height: 100%; overflow: hidden;
 }
 
 /** about  **/

@@ -22,6 +22,16 @@ define(function(require, exports, module){
         }
 	]);
 	
+	console.log(123);
+	var footContent = $("<div style='display:table-cell;vertical-align: middle;text-align: center;'></div>");
+	var text = $("<div style='font-size:30px;'>Want to see all projects?</div>");
+	var button = $("<div></div>").button({
+		text: "VIEW ALL"
+	}).css("margin-top", 15);
+	
+	footContent.append(text);
+	footContent.append(button);
+	foot.append(footContent);
 	/*exports.sayhello = function(){
 		
 	};*/

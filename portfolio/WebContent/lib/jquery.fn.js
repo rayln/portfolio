@@ -89,12 +89,20 @@ define(function(require, exports, module){
 			})();
 			
 			(function event(){
+				function stop(){
+					$(tabList).each(function(index, obj){
+						obj.stop();
+					});
+					name.stop();
+				}
 				$(tabList).each(function(index, obj){
 					obj.on("mouseenter", function(){
+						stop();
 						pointMove.call(obj);
 					});
 				});
 				name.on("mouseenter", function(){
+					stop();
 					pointMove.call(name);
 				});
 				function pointMove(e){
@@ -122,6 +130,7 @@ define(function(require, exports, module){
 			var _this = $(this);
 			var option = {
 				currentIndex: 0,
+				duration: 400,
 				pointer:{
 					width: 27, 
 					height: 27, 
@@ -224,22 +233,39 @@ define(function(require, exports, module){
 			
 			
 			(function bindEvent(){
+				function moveRtoL(pointer, nextIndex, currentObj, nextObj){
+					pointer.removeClass("selected");
+					navigate.pointerList[nextIndex].addClass("selected");
+					
+					currentObj.animate({
+						left: -$(window).width()
+					},params.duration);
+					
+					nextObj.animate({
+						left: 0
+					},params.duration);
+				}
+				
+				function moveLtoR(pointer, nextIndex, currentObj, nextObj){
+					pointer.removeClass("selected");
+					navigate.pointerList[nextIndex].addClass("selected");
+					
+					currentObj.animate({
+						left: $(window).width()
+					},params.duration);
+					
+					nextObj.animate({
+						left: 0
+					},params.duration);
+				}
+				
 				navigate.arrowLeft.on("click", function(){
 					var pointer = navigate.pointer.find(".selected");
 					var index = pointer.data("slide-index");
 					var currentObj = slideList[index];
 					var nextIndex = (index == 0 ? slideList.length - 1 : index - 1);
 					var nextObj = slideList[nextIndex].css("left", -$(window).width());
-					pointer.removeClass("selected");
-					navigate.pointerList[nextIndex].addClass("selected");
-					
-					currentObj.animate({
-						left: $(window).width()
-					},600);
-					
-					nextObj.animate({
-						left: 0
-					},600);
+					moveLtoR(pointer, nextIndex, currentObj, nextObj);
 				});
 				navigate.arrowRight.on("click", function(){
 					var pointer = navigate.pointer.find(".selected");
@@ -247,16 +273,28 @@ define(function(require, exports, module){
 					var currentObj = slideList[index];
 					var nextIndex = (index == slideList.length - 1 ? 0 : index + 1);
 					var nextObj = slideList[nextIndex].css("left", $(window).width());
-					pointer.removeClass("selected");
-					navigate.pointerList[nextIndex].addClass("selected");
-					
-					currentObj.animate({
-						left: -$(window).width()
-					},600);
-					
-					nextObj.animate({
-						left: 0
-					},600);
+					moveRtoL(pointer, nextIndex, currentObj, nextObj);
+				});
+				
+				$(navigate.pointerList).each(function(index, obj){
+					obj.on("click",function(){
+						var pointer = navigate.pointer.find(".selected");
+						var currentIndex = pointer.data("slide-index");
+						var nextIndex = obj.data("slide-index");
+						if(currentIndex == nextIndex){
+							return;
+						}
+						var currentObj = slideList[currentIndex];
+						
+						console.log(currentIndex+"  "+nextIndex);
+						if(currentIndex < nextIndex){
+							var nextObj = slideList[nextIndex].css("left", $(window).width());
+							moveRtoL(pointer, nextIndex, currentObj, nextObj);
+						}else{
+							var nextObj = slideList[nextIndex].css("left", -$(window).width());
+							moveLtoR(pointer, nextIndex, currentObj, nextObj);
+						}
+					});
 				});
 			})();
 		},
@@ -281,6 +319,40 @@ define(function(require, exports, module){
 					}
 				});
 			});
+		},
+		
+		//Button
+		button: function(params){
+			var _this = $(this);
+			var bg = $("<span class='hover'></span>");
+			var text = $("<span class='text'></span>").text(params.text);
+			var option = {
+				duration: 200
+			};
+			
+			$.extend(true, params, option);
+			_this.addClass("button");
+			_this.append(bg);
+			_this.append(text);
+			
+			//bind event
+			(function(){
+				_this.on("mouseenter", function(){
+					bg.css("right","auto").css("left", 0);
+					bg.animate({
+						width: "100%"
+					}, params.duration);
+					text.css("color", 'white');
+				});
+				_this.on("mouseleave", function(){
+					bg.css("left","auto").css("right", 0);
+					bg.animate({
+						width: 0
+					}, params.duration);
+					text.css("color", "black");
+				});
+			})();
+			return _this;
 		}
 	});
 	
