@@ -394,6 +394,10 @@ define(function(require, exports, module){
 			var option = {};
 			$.extend(true, params, option);
 			
+			//w:167 h 36 c: 1d1d1d
+			var body = $("<div class='tips-body'></div>");
+			var tipsLeft = $("<div class='tips-body-left'></div>");
+			var tipsRight = $("<div class='tips-body-right'></div>");
 		}
 	});
 	
