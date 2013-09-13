@@ -1,0 +1,8 @@
+/** home  **/
+.pf-main-body > .about{
+	
+}
+
+.pf-main-body > .about > .body{
+	background: url("../images/about/about.png") center 100px no-repeat; background-size: auto 80%; width:1200px; height: 100%;margin: auto;
+}

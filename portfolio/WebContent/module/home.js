@@ -22,7 +22,6 @@ define(function(require, exports, module){
         }
 	]);
 	
-	console.log(123);
 	var footContent = $("<div style='display:table-cell;vertical-align: middle;text-align: center;'></div>");
 	var text = $("<div style='font-size:30px;'>Want to see all projects?</div>");
 	var button = $("<div></div>").button({
@@ -35,4 +34,6 @@ define(function(require, exports, module){
 	/*exports.sayhello = function(){
 		
 	};*/
+	
+	exports.button = button;
 });
