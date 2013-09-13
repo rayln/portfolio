@@ -6,7 +6,6 @@ define(function(require, exports, module){
 			alert(1234);
 		},
 		animateSlide: function(params, time, callback){
-			console.log("animateSlide");
 			var _this = $(this);
 			var percentTime = .3;
 			var percentPosition = .5;
@@ -31,8 +30,6 @@ define(function(require, exports, module){
 			var _this = $(this);
 			var option = {
 				width: 800,
-				name: "<span>ASG</span> DESIGN TEAM PORTFOLIO",
-				nameWidth: 160,
 				point:{
 					width: 20,
 					height: 11
@@ -48,7 +45,7 @@ define(function(require, exports, module){
 			params = params || {};
 			$.extend(true,params,option);
 			var frame = $("<div class=\"frame\"></div>");
-			var name = $("<div class=\"name\"></div>");
+			var name = $("<div class=\"name selected\"></div>");
 			var tab = $("<div class=\"tab\">");
 			var body = $("<div class=\"body\"></div>");
 			var foot = $("<div class=\"foot\"></body>");
@@ -59,12 +56,14 @@ define(function(require, exports, module){
 			
 			(function bodyInit(){
 				_this.addClass("pf-main-title");
-				name.append(params.name);
-				name.width(params.nameWidth);
-				$(params.tab).each(function(a,b,c){
-					var objTemp = $("<span>"+b.name+"</span>");
+				name.append(params.name.name);
+				name.width(params.name.width);
+				
+				$(params.tab).each(function(index, obj){
+					var objTemp = $("<span>"+obj.name+"</span>");
 					tabList.push(objTemp);
 					tab.append(objTemp);
+					objTemp.data("title-index", index);
 				});
 				
 				body.append(tab);
@@ -72,7 +71,14 @@ define(function(require, exports, module){
 				frame.append(body);
 				_this.append(frame);
 			})();
-			
+			function reset(){
+				stop();
+				if(name.hasClass("selected")){
+					pointMove.call(name);
+				}else{
+					pointMove.call(tab.find(".selected"));
+				}
+			}
 			(function footInit(){
 				
 				var initObj = name;
@@ -87,41 +93,62 @@ define(function(require, exports, module){
 				foot.append(right);
 				_this.append(foot);
 			})();
-			
+			function stop(){
+				left.stop();
+				right.stop();
+			}
 			(function event(){
-				function stop(){
-					$(tabList).each(function(index, obj){
-						obj.stop();
-					});
-					name.stop();
-				}
 				$(tabList).each(function(index, obj){
 					obj.on("mouseenter", function(){
 						stop();
 						pointMove.call(obj);
-					});
+					}).on("mouseleave", function(){
+						reset();
+					}).on("click", function(){
+						var that = $(this);
+						$(tabList).each(function(index, obj){
+							$(obj).removeClass("selected");
+						});
+						name.removeClass("selected");
+						that.addClass("selected");
+					}).on("click", params.tab[index].click || null);
 				});
 				name.on("mouseenter", function(){
 					stop();
 					pointMove.call(name);
-				});
-				function pointMove(e){
-					var leftWith = calc(this.position(), this, params);
-					left.animate({
-						width: leftWith
-					}, params.tabInfo.animationTime);
-					right.animate({
-						width: calcRight(leftWith, params)
-					}, params.tabInfo.animationTime);
-				}
+				}).on("mouseleave", function(){
+					reset();
+				}).on("click", function(){
+					$(tabList).each(function(index, obj){
+						$(obj).removeClass("selected");
+					});
+					name.addClass("selected");
+				}).on("click", params.name.click || null);
 			})();
-			
+			function pointMove(e){
+				var leftWith = calc(this.position(), this, params);
+				left.animate({
+					width: leftWith
+				}, params.tabInfo.animationTime);
+				right.animate({
+					width: calcRight(leftWith, params)
+				}, params.tabInfo.animationTime);
+			}
 			function calc(position, obj, params){
 				return position.left + obj.width() / 2 - params.point.width / 2;
 			}
 			function calcRight(leftWith, params){
 				return $(window).width() - leftWith - params.point.width;
 			}
+			return {
+				go: function(index){
+					if(index == -1){
+						pointMove.call(name);
+					}else{
+						pointMove.call(tabList[index]);
+					}
+				}
+			};
 		},
 		
 		
@@ -193,7 +220,6 @@ define(function(require, exports, module){
 			
 			(function initBody(){
 				_this.append(body);
-				console.log(params.body.height);
 			})();
 			
 			//create Pointer Navigate
@@ -234,24 +260,24 @@ define(function(require, exports, module){
 			
 			(function bindEvent(){
 				function moveRtoL(pointer, nextIndex, currentObj, nextObj){
-					pointer.removeClass("selected");
-					navigate.pointerList[nextIndex].addClass("selected");
-					
-					currentObj.animate({
-						left: -$(window).width()
-					},params.duration);
-					
-					nextObj.animate({
-						left: 0
-					},params.duration);
+					move(pointer, nextIndex, currentObj, nextObj, -$(window).width());
 				}
 				
 				function moveLtoR(pointer, nextIndex, currentObj, nextObj){
+					move(pointer, nextIndex, currentObj, nextObj, $(window).width());
+				}
+				function move(pointer, nextIndex, currentObj, nextObj, moveDirection){
 					pointer.removeClass("selected");
 					navigate.pointerList[nextIndex].addClass("selected");
-					
+					$(slideList).each(function(index, obj){
+						if(currentObj != obj && nextObj != obj){
+							obj.hide();
+						}else{
+							obj.show();
+						}
+					});
 					currentObj.animate({
-						left: $(window).width()
+						left: moveDirection
 					},params.duration);
 					
 					nextObj.animate({
@@ -286,7 +312,6 @@ define(function(require, exports, module){
 						}
 						var currentObj = slideList[currentIndex];
 						
-						console.log(currentIndex+"  "+nextIndex);
 						if(currentIndex < nextIndex){
 							var nextObj = slideList[nextIndex].css("left", $(window).width());
 							moveRtoL(pointer, nextIndex, currentObj, nextObj);
@@ -296,11 +321,19 @@ define(function(require, exports, module){
 						}
 					});
 				});
+				
+				setInterval(function(){
+					var pointer = navigate.pointer.find(".selected");
+					var index = pointer.data("slide-index");
+					var currentObj = slideList[index];
+					var nextIndex = (index == slideList.length - 1 ? 0 : index + 1);
+					var nextObj = slideList[nextIndex].css("left", $(window).width());
+					moveRtoL(pointer, nextIndex, currentObj, nextObj);
+				}, 5000);
 			})();
 		},
 		
 		animateSlide: function(params, time, callback){
-			console.log("animateSlide");
 			var _this = $(this);
 			var percentTime = .5;
 			var percentPosition = .3;
@@ -310,8 +343,6 @@ define(function(require, exports, module){
 				frontParams[key] = params[key] * percentPosition;
 				blackParams[key] = params[key];
 			}
-			console.log(time * percentTime);
-			console.log(time * (1 - percentTime));
 			_this.animate(frontParams, time * percentTime, function(){
 				_this.animate(blackParams, time * (1 - percentTime), function(){
 					if(callback){
@@ -339,6 +370,7 @@ define(function(require, exports, module){
 			(function(){
 				_this.on("mouseenter", function(){
 					bg.css("right","auto").css("left", 0);
+					bg.stop();
 					bg.animate({
 						width: "100%"
 					}, params.duration);
@@ -346,6 +378,7 @@ define(function(require, exports, module){
 				});
 				_this.on("mouseleave", function(){
 					bg.css("left","auto").css("right", 0);
+					bg.stop();
 					bg.animate({
 						width: 0
 					}, params.duration);
@@ -353,6 +386,14 @@ define(function(require, exports, module){
 				});
 			})();
 			return _this;
+		},
+		
+		//tips
+		tips: function(params){
+			var _this = $(this);
+			var option = {};
+			$.extend(true, params, option);
+			
 		}
 	});
 	

@@ -12,7 +12,7 @@
 	width: 380px; height: 100%; display: table; float: left; margin-left: 50px;
 }
 .pf-main-body > .home > .body .content > .content-right{
-	width: 770px; height: 100%; background-size: auto 85%; float: right;
+	width: 770px; height: 100%; background-size: auto 80%; float: right;
 }
 .pf-main-body .goldfish{
 	background: url("../images/home/goldfish-comp.png") left center no-repeat;

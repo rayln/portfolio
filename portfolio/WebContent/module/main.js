@@ -22,15 +22,36 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 		$("#mainHome").animate({
 			'margin-top': -params.window.height * (currentIndex + 1)
 		}, 400);
+		title.go(currentIndex);
+	}
+	function goPage(index){
+		$("#mainHome").animate({
+			'margin-top': -params.window.height * index
+		}, 400);
 	}
 	
-	$("#mainTitle").title({
+	var title = $("#mainTitle").title({
 		tab:[
-		     {name: "ABOUT US"},
-		     {name: "CONCEPTS"},
-		     {name: "DELIVERD PROJECTS"},
-		     {name: "USABILITY TESTING"}
-		]
+		     {name: "ABOUT US", click: function(){
+		    	 goPage(1);
+		     }},
+		     {name: "CONCEPTS", click: function(){
+		    	 goPage(1);
+		     }},
+		     {name: "DELIVERD PROJECTS", click: function(){
+		    	 goPage(1);
+		     }},
+		     {name: "USABILITY TESTING", click: function(){
+		    	 goPage(1);
+		     }}
+		],
+		name:{
+			name: "<span>ASG</span> DESIGN TEAM PORTFOLIO",
+			width: 160,
+			click: function(){
+				goPage(0);
+			}
+		}
 	});
 	
 	home.button.on("click", goNext);
