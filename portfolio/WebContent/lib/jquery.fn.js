@@ -207,6 +207,12 @@ define(function(require, exports, module){
 					arr.push(bg);
 					bg.append($(obj.html));
 					bg.data("slide-index", index);
+					if(obj.style){
+						for(var key in obj.style){
+							console.log("key:"+key+"  value:"+obj.style[key]);
+							bg.css(key, obj.style[key]);
+						}
+					}
 					body.append(bg);
 					
 					if(index == params.currentIndex){
@@ -395,9 +401,22 @@ define(function(require, exports, module){
 			$.extend(true, params, option);
 			
 			//w:167 h 36 c: 1d1d1d
-			var body = $("<div class='tips-body'></div>");
-			var tipsLeft = $("<div class='tips-body-left'></div>");
+			var tipsLeft = $("<div class='tips-body-left'>"+params.text+"</div>");
 			var tipsRight = $("<div class='tips-body-right'></div>");
+			//init body
+			(function init(){
+				_this.addClass("tips-body");
+				_this.append(tipsLeft);
+				_this.append(tipsRight);
+			})();
+			
+			(function bindEvent(){
+				tipsLeft.on("click", function(){
+					tipsLeft.animate({
+						height: 150
+					}, 400);
+				});
+			})();
 		}
 	});
 	

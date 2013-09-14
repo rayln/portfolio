@@ -56,4 +56,7 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 	
 	home.button.on("click", goNext);
 	
+	$("#mainTips").tips({
+		text: 'Navi'
+	});
 });

@@ -1,0 +1,10 @@
+.tips-body{
+	position: absolute; z-index: 100; top: 47%; bottom:53%; right:0; cursor: pointer; display: table;
+}
+.tips-body > .tips-body-left{
+	width: 167px; height: 36px;  display: table-cell; background: url("../images/tips/tip-icon.png") 115px center no-repeat; background-color: #1d1d1d; 
+	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; vertical-align: middle;
+}
+.tips-body > .tips-body-right{
+	width: 20px; height: 36px; background:url("../images/tips/tip-arrow.png") center center no-repeat; display: table-cell;
+}
