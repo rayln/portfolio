@@ -398,18 +398,36 @@ define(function(require, exports, module){
 		tips: function(params){
 			var _this = $(this);
 			var option = {
-				catelogAttr:{
+				item:{
 					height: 30
+				},
+				attr:{
+					start:{
+						width: 187,
+						height: 36,
+						top: _this.position().top
+					},
+					catelog:{
+						width: 260,
+						top: 0
+					},
+					title:{
+						height: 70
+					},
+					foot:{
+						height: 50
+					}
 				}
 			};
 			$.extend(true, params, option);
-			
 			//w:167 h 36 c: 1d1d1d
-			var tipsLeft = $("<div class='tips-body-left-front'>"+params.text+"</div>");
+			var tipsLeft = $("<div class='tips-body-left-front'>"+params.text+"</div>"); _this.css("width", params.attr.start.width);
 			var tipsRight = $("<div class='tips-body-right'></div>");
 			var tipsCatelog = $("<div class='tips-body-left-catelog'></div>");
+			var tipsFoot = $("<div></div>");
 			//init body
 			(function init(){
+				//tipsCatelog.css("height", 36);
 				_this.addClass("tips-body");
 				_this.append(tipsLeft);
 				_this.append(tipsCatelog);
@@ -428,13 +446,36 @@ define(function(require, exports, module){
 					ul.append(li);
 				});
 				tipsCatelog.append(ul);
+				tipsFoot.css("height", params.attr.foot.height);
+				tipsCatelog.append(tipsFoot);
+				console.log(tipsCatelog.height() +" == "+ tipsCatelog.css("height"));
+				
+				
 			})();
+			
+			(function settingCatelogParams(){
+				params.attr.catelog.height = tipsCatelog.height();
+				params.attr.catelog.top = -(tipsCatelog.height() - params.attr.start.height)/2;
+			})();
+			
+			(function settingCatelog(){
+				tipsCatelog.css("height", params.attr.start.height).css("right", 20).css("width", params.attr.start.width).hide();
+			})();
+			
 			
 			(function bindEvent(){
 				tipsLeft.on("click", function(){
-					tipsLeft.animate({
-						height: 150
-					}, 400);
+					console.log(params.attr.catelog.height);
+					_this.css("width", params.attr.catelog.width);
+					tipsLeft.hide();
+					tipsCatelog.show();
+					tipsCatelog.animate({
+						height: params.attr.catelog.height,
+						top: params.attr.catelog.top,
+						width: params.attr.catelog.width - 20
+					}, 200);
+					
+					
 				});
 			})();
 		}

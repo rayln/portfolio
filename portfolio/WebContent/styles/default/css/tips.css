@@ -1,15 +1,16 @@
 .tips-body{
-	position: absolute; z-index: 100; top: 47%; right:0; cursor: pointer; display: table; width: 187px; height:36px;
+	position: absolute; z-index: 100; top: 47%; right:0; display: table; height:36px;
+	
 }
 .tips-body > .tips-body-left-front{
 	width: 167px; height: 36px;  background: url("../images/tips/tip-icon.png") 115px center no-repeat; background-color: #1d1d1d; 
-	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; position: absolute; left:0;
+	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; position: absolute; left:0; cursor: pointer; 
 }
 .tips-body > .tips-body-right{
 	width: 20px; height: 36px; background:url("../images/tips/tip-arrow.png") center center no-repeat; position: absolute; right:0;
 }
 .tips-body > .tips-body-left-catelog{
-	width: 167px; height: 136px;  background-color: #1d1d1d; box-sizing: border-box; color: white; position: absolute; left:0; z-index: 101;
+	width: 240px; background-color: #1d1d1d; box-sizing: border-box; color: white; position: absolute; right:20; z-index: 101;
 }
 .tips-body > .tips-body-left-catelog > h1{
 	font-family: ProximaNovaSemiBold;
@@ -21,13 +22,16 @@
 	text-align: center;
 }
 .tips-body > .tips-body-left-catelog > ul{
+	width: 240px;
 	margin: 0;
 	list-style: none;
 	padding: 0;
 }
 .tips-body > .tips-body-left-catelog > ul > li{
-	font-size: 13px;
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-size: 14px;
+	font-style: italic;
 }
