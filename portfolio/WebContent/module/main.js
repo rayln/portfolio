@@ -57,6 +57,14 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 	home.button.on("click", goNext);
 	
 	$("#mainTips").tips({
-		text: 'Navi'
+		text: 'Navi',
+		catelogTitle:"HOME",
+		catelog:[
+		         {name: "Portfolio"},
+		         {name: "About us"},
+		         {name: "Concepts"},
+		         {name: "Deliverd"},
+		         {name: "Usability"}
+		]
 	});
 });

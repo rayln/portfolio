@@ -397,17 +397,37 @@ define(function(require, exports, module){
 		//tips
 		tips: function(params){
 			var _this = $(this);
-			var option = {};
+			var option = {
+				catelogAttr:{
+					height: 30
+				}
+			};
 			$.extend(true, params, option);
 			
 			//w:167 h 36 c: 1d1d1d
-			var tipsLeft = $("<div class='tips-body-left'>"+params.text+"</div>");
+			var tipsLeft = $("<div class='tips-body-left-front'>"+params.text+"</div>");
 			var tipsRight = $("<div class='tips-body-right'></div>");
+			var tipsCatelog = $("<div class='tips-body-left-catelog'></div>");
 			//init body
 			(function init(){
 				_this.addClass("tips-body");
 				_this.append(tipsLeft);
+				_this.append(tipsCatelog);
 				_this.append(tipsRight);
+			})();
+			
+			(function(){
+				if(params.catelogTitle){
+					var h1 = $("<h1>"+params.catelogTitle+"</h1>");
+					tipsCatelog.append(h1);
+				}
+				
+				var ul = $("<ul></ul>");
+				$(params.catelog).each(function(index, obj){
+					var li = $("<li>"+obj.name+"</li>");
+					ul.append(li);
+				});
+				tipsCatelog.append(ul);
 			})();
 			
 			(function bindEvent(){

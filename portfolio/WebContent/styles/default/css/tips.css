@@ -1,10 +1,33 @@
 .tips-body{
-	position: absolute; z-index: 100; top: 47%; bottom:53%; right:0; cursor: pointer; display: table;
+	position: absolute; z-index: 100; top: 47%; right:0; cursor: pointer; display: table; width: 187px; height:36px;
 }
-.tips-body > .tips-body-left{
-	width: 167px; height: 36px;  display: table-cell; background: url("../images/tips/tip-icon.png") 115px center no-repeat; background-color: #1d1d1d; 
-	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; vertical-align: middle;
+.tips-body > .tips-body-left-front{
+	width: 167px; height: 36px;  background: url("../images/tips/tip-icon.png") 115px center no-repeat; background-color: #1d1d1d; 
+	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; position: absolute; left:0;
 }
 .tips-body > .tips-body-right{
-	width: 20px; height: 36px; background:url("../images/tips/tip-arrow.png") center center no-repeat; display: table-cell;
+	width: 20px; height: 36px; background:url("../images/tips/tip-arrow.png") center center no-repeat; position: absolute; right:0;
+}
+.tips-body > .tips-body-left-catelog{
+	width: 167px; height: 136px;  background-color: #1d1d1d; box-sizing: border-box; color: white; position: absolute; left:0; z-index: 101;
+}
+.tips-body > .tips-body-left-catelog > h1{
+	font-family: ProximaNovaSemiBold;
+	font-size: 22px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: bold;
+	margin: 30px 0 15px;
+	text-align: center;
+}
+.tips-body > .tips-body-left-catelog > ul{
+	margin: 0;
+	list-style: none;
+	padding: 0;
+}
+.tips-body > .tips-body-left-catelog > ul > li{
+	font-size: 13px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
 }
