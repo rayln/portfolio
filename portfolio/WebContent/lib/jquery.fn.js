@@ -421,17 +421,21 @@ define(function(require, exports, module){
 			};
 			$.extend(true, params, option);
 			//w:167 h 36 c: 1d1d1d
-			var tipsLeft = $("<div class='tips-body-left-front'>"+params.text+"</div>"); _this.css("width", params.attr.start.width);
+			var tipsTransform = $("<div class='tips-transform'></div>");
+			var tipsLeft = $("<div class='tips-body-left-front' style='font-style: italic;'>"+params.text+"</div>"); _this.css("width", params.attr.start.width);
 			var tipsRight = $("<div class='tips-body-right'></div>");
 			var tipsCatelog = $("<div class='tips-body-left-catelog'></div>");
-			var tipsFoot = $("<div></div>");
+			var tipsBack = $("<div class='tips-body-left-back'><button >123456</button></div>").hide();
+			var tipsFoot = $("<div style='color:white; text-align:center; line-height: 40px;'>show</div>");
 			//init body
 			(function init(){
 				//tipsCatelog.css("height", 36);
 				_this.addClass("tips-body");
-				_this.append(tipsLeft);
-				_this.append(tipsCatelog);
-				_this.append(tipsRight);
+				tipsTransform.append(tipsLeft);
+				tipsTransform.append(tipsCatelog);
+				tipsTransform.append(tipsBack);
+				tipsTransform.append(tipsRight);
+				_this.append(tipsTransform);
 			})();
 			
 			(function(){
@@ -448,7 +452,6 @@ define(function(require, exports, module){
 				tipsCatelog.append(ul);
 				tipsFoot.css("height", params.attr.foot.height);
 				tipsCatelog.append(tipsFoot);
-				console.log(tipsCatelog.height() +" == "+ tipsCatelog.css("height"));
 				
 				
 			})();
@@ -464,18 +467,55 @@ define(function(require, exports, module){
 			
 			
 			(function bindEvent(){
+				function showBack(){
+					tipsBack.show();
+					tipsBack.css("height", params.attr.catelog.height).css("top", params.attr.catelog.top).css("width", params.attr.catelog.width - 20);
+				}
 				tipsLeft.on("click", function(){
-					console.log(params.attr.catelog.height);
 					_this.css("width", params.attr.catelog.width);
 					tipsLeft.hide();
-					tipsCatelog.show();
+					tipsCatelog.css('-webkit-transform', 'rotateX(0deg)').show();
 					tipsCatelog.animate({
 						height: params.attr.catelog.height,
 						top: params.attr.catelog.top,
 						width: params.attr.catelog.width - 20
-					}, 200);
+					}, 200, showBack);
 					
 					
+				});
+				
+				tipsFoot.on("click", function(){
+					//tipsRight
+					tipsCatelog.css("color", 0);
+					tipsCatelog.animate({
+						color : 180
+					}, {
+						step : function(now, fx) {
+							tipsCatelog.css('-webkit-transform', 'rotateX(' + now + 'deg)');
+							tipsBack.css('-webkit-transform', 'rotateX(' + (now - 180) + 'deg)');
+							tipsRight.css('-webkit-transform', 'rotateX(' + now + 'deg)');
+						},
+						duration : 400
+					}, 'swing');
+				});
+				
+				tipsBack.on("click", function(){
+					_this.css("width", params.attr.start.width);
+					tipsCatelog.animate({
+						height: params.attr.start.height,
+						top: params.attr.start.top,
+						width: params.attr.start.width - 20
+					}, 200, function(){
+						tipsCatelog.hide();
+						tipsLeft.show();
+					});
+					tipsBack.animate({
+						height: params.attr.start.height,
+						top: params.attr.start.top,
+						width: params.attr.start.width - 20
+					}, 200, function(){
+						tipsBack.hide();
+					});
 				});
 			})();
 		}

@@ -1,18 +1,27 @@
 .tips-body{
-	position: absolute; z-index: 100; top: 47%; right:0; display: table; height:36px;
+	position: absolute; z-index: 100; top: 47%; right:0; display: table; height:36px; 
+	-webkit-transform-style: preserve-3d;
+	-webkit-perspective: 600px;
 	
 }
-.tips-body > .tips-body-left-front{
+.tips-body > .tips-transform.tips-transform-side{
+	-webkit-transform: rotateX(60deg);
+}
+.tips-body > .tips-transform{
+	/* -webkit-transition: all 0.4s ease-in-out; */ -webkit-backface-visibility: hidden; -webkit-transform: rotateX(0deg);
+	-webkit-transform-style: preserve-3d; position: relative;
+}
+.tips-body > .tips-transform > .tips-body-left-front{
 	width: 167px; height: 36px;  background: url("../images/tips/tip-icon.png") 115px center no-repeat; background-color: #1d1d1d; 
 	padding: 9px 15px;box-sizing: border-box; /* line-height: 34px;  */color: white; position: absolute; left:0; cursor: pointer; 
 }
-.tips-body > .tips-body-right{
+.tips-body > .tips-transform > .tips-body-right{
 	width: 20px; height: 36px; background:url("../images/tips/tip-arrow.png") center center no-repeat; position: absolute; right:0;
 }
-.tips-body > .tips-body-left-catelog{
-	width: 240px; background-color: #1d1d1d; box-sizing: border-box; color: white; position: absolute; right:20; z-index: 101;
+.tips-body > .tips-transform > .tips-body-left-catelog{
+	width: 240px; background-color: #1d1d1d; box-sizing: border-box; color: white; position: absolute; right:20; z-index: 101; -webkit-backface-visibility: hidden;
 }
-.tips-body > .tips-body-left-catelog > h1{
+.tips-body > .tips-transform > .tips-body-left-catelog > h1{
 	font-family: ProximaNovaSemiBold;
 	font-size: 22px;
 	font-style: normal;
@@ -21,17 +30,22 @@
 	margin: 30px 0 15px;
 	text-align: center;
 }
-.tips-body > .tips-body-left-catelog > ul{
+.tips-body > .tips-transform > .tips-body-left-catelog > ul{
 	width: 240px;
 	margin: 0;
 	list-style: none;
 	padding: 0;
 }
-.tips-body > .tips-body-left-catelog > ul > li{
+.tips-body > .tips-transform > .tips-body-left-catelog > ul > li{
 	height: 40px;
 	line-height: 40px;
 	text-align: center;
 	font-family: Georgia, 'Times New Roman', Times, serif;
 	font-size: 14px;
 	font-style: italic;
+}
+
+/****/
+.tips-body > .tips-transform > .tips-body-left-back{
+	color: white; position: absolute; right:20px; z-index: 99; width: 240px; background-color: #1d1d1d; height: 100%; -webkit-transform: translateZ(-1px) rotateZ(180deg) rotateY(180deg); -webkit-backface-visibility: hidden;
 }

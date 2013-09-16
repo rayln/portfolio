@@ -12,12 +12,14 @@
 	left: 100px;
 	text-indent: 90px;
 	background-color: red;
+	-webkit-transition: all 0.4s ease-in-out;
+	
 }
 </style>
 <script type="text/javascript" src="lib/sea.min.js"></script>
 <script type="text/javascript" src="lib/sea.config.js"></script>
 </head>
-<body>
+<body style="-webkit-transform-style: preserve-3d;-webkit-perspective: 600px;">
 	<div id="box"></div>
 	<button id="helloworld">helloworld</button>
 </body>
@@ -37,5 +39,10 @@
 			},
 			duration : 'slow'
 		}, 'swing');
+		
+		//-webkit-transform: rotateX(60deg);
+		$('#box').on("click", function(){
+			$(this).css("-webkit-transform", "rotateX(60deg)");
+		});
 	});
 </script>
