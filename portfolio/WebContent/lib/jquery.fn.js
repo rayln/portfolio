@@ -426,7 +426,7 @@ define(function(require, exports, module){
 			var tipsRight = $("<div class='tips-body-right'></div>");
 			var tipsCatelog = $("<div class='tips-body-left-catelog'></div>");
 			var tipsBack = $("<div class='tips-body-left-back'><button >123456</button></div>").hide();
-			var tipsFoot = $("<div style='color:white; text-align:center; line-height: 40px;'>show</div>");
+			var tipsFoot = $("<div style='color:black;background-color:white; cursor:pointer; text-align:center; line-height: 40px;'>show</div>");
 			//init body
 			(function init(){
 				//tipsCatelog.css("height", 36);
@@ -452,8 +452,6 @@ define(function(require, exports, module){
 				tipsCatelog.append(ul);
 				tipsFoot.css("height", params.attr.foot.height);
 				tipsCatelog.append(tipsFoot);
-				
-				
 			})();
 			
 			(function settingCatelogParams(){
