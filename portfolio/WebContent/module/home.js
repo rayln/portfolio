@@ -20,7 +20,8 @@ define(function(require, exports, module){
         	bg: "styles/default/images/home/fishnet-bg.png",
         	html: fishnet,
         	style: {
-        		'background-size': '120% auto'
+        		'background-size': '100% auto',
+        		'background-position': '50% 80%'
         	}
         }
 	]);
