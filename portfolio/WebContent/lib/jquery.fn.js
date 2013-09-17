@@ -357,6 +357,10 @@ define(function(require, exports, module){
 					var top = (_this.height() - params.arrow.height)/2 + params.title.height;
 					navigate.arrowLeft.css("top", top).css("left", params.arrow.left.left);
 					navigate.arrowRight.css("top", top).css("right", params.arrow.right.right);
+					
+					//resize navigate pointer
+					var ponintLeft = ($(window).width() - params.pointer.pointerWidth) / 2;
+					navigate.pointer.css("left", ponintLeft);
 				});
 				
 				/*setInterval(function(){
