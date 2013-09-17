@@ -6,10 +6,13 @@
 	height: 80%; 
 }
 .pf-main-body > .home > .body .content{
-	width:1200px; height: 100%; margin: auto;
+	width:1200px; height: 100%; margin: auto; position: relative;
 }
 .pf-main-body > .home > .body .content > .content-left{
 	width: 380px; height: 100%; display: table; float: left; margin-left: 50px;
+}
+.pf-main-body > .home > .body .content > .content-left.moonrise-content-left{
+	position: absolute; z-index: 1;
 }
 .pf-main-body > .home > .body .content > .content-right{
 	width: 770px; height: 100%; background-size: auto 80%; float: right; background-position: -10px bottom;
@@ -18,7 +21,7 @@
 	background: url("../images/home/goldfish-comp.png") left center no-repeat;
 }
 .pf-main-body .moonrise{
-	background: url("../images/home/nexus-10.png") left center no-repeat;
+	background: url("../images/home/nexus-10.png") left center no-repeat; position: absolute; left: 400px;
 }
 .pf-main-body > .home > .foot{
 	height: 20%; width: 100%; vertical-align: middle; display: table;

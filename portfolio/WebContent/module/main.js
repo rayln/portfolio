@@ -18,16 +18,21 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 	})();
 	
 	function goNext(){
-		var currentIndex = $(".pf-main-body").find(".selected").data("module-index");
-		$("#mainHome").animate({
-			'margin-top': -params.window.height * (currentIndex + 1)
-		}, 400);
+		var currentIndex = $(".pf-main-body > .selected").data("module-index");
 		title.go(currentIndex);
+		goPage(currentIndex + 1);
 	}
 	function goPage(index){
 		$("#mainHome").animate({
-			'margin-top': -params.window.height * index
+			'margin-top': -$(window).height() * index
 		}, 400);
+		$(".module").each(function(listIndex, obj){
+			if(index == listIndex){
+				$(obj).addClass("selected");
+			}else{
+				$(obj).removeClass("selected");
+			}
+		});
 	}
 	
 	var title = $("#mainTitle").title({
@@ -67,4 +72,15 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 		         {name: "Usability"}
 		]
 	});
+	
+	
+	//bind event
+	(function(){
+		
+		//resize
+		$(window).on("resize", function(){
+			var currentIndex = $(".pf-main-body > .selected").data("module-index");
+			$("#mainHome").css('margin-top', -$(window).height() * currentIndex);
+		});
+	})();
 });

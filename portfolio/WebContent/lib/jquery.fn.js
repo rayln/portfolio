@@ -79,7 +79,7 @@ define(function(require, exports, module){
 					pointMove.call(tab.find(".selected"));
 				}
 			}
-			(function footInit(){
+			function footInit(){
 				
 				var initObj = name;
 				var position = initObj.position();
@@ -92,7 +92,8 @@ define(function(require, exports, module){
 				foot.append(point);
 				foot.append(right);
 				_this.append(foot);
-			})();
+			};
+			footInit();
 			function stop(){
 				left.stop();
 				right.stop();
@@ -124,6 +125,12 @@ define(function(require, exports, module){
 					});
 					name.addClass("selected");
 				}).on("click", params.name.click || null);
+				
+				//resize
+				$(window).on("resize", function(){
+					footInit();
+					reset();
+				});
 			})();
 			function pointMove(e){
 				var leftWith = calc(this.position(), this, params);
@@ -142,11 +149,20 @@ define(function(require, exports, module){
 			}
 			return {
 				go: function(index){
+					$(tabList).each(function(index, obj){
+						$(obj).removeClass("selected");
+					});
+					name.removeClass("selected");
 					if(index == -1){
 						pointMove.call(name);
+						name.addClass("selected");
 					}else{
 						pointMove.call(tabList[index]);
+						tabList[index].addClass("selected");
 					}
+					var that = $(this);
+					
+					
 				}
 			};
 		},
@@ -209,7 +225,6 @@ define(function(require, exports, module){
 					bg.data("slide-index", index);
 					if(obj.style){
 						for(var key in obj.style){
-							console.log("key:"+key+"  value:"+obj.style[key]);
 							bg.css(key, obj.style[key]);
 						}
 					}
@@ -328,14 +343,30 @@ define(function(require, exports, module){
 					});
 				});
 				
-				setInterval(function(){
+				$(window).on("resize", function(){
+					$(slideList).each(function(index, obj){
+						var pointer = navigate.pointer.find(".selected");
+						var currentIndex = pointer.data("slide-index");
+						if(index == currentIndex){
+							obj.css("left", 0).css("top", 0);
+						}else{
+							obj.css("left", $(window).width()).css("top", 0);
+						}
+					});
+					
+					var top = (_this.height() - params.arrow.height)/2 + params.title.height;
+					navigate.arrowLeft.css("top", top).css("left", params.arrow.left.left);
+					navigate.arrowRight.css("top", top).css("right", params.arrow.right.right);
+				});
+				
+				/*setInterval(function(){
 					var pointer = navigate.pointer.find(".selected");
 					var index = pointer.data("slide-index");
 					var currentObj = slideList[index];
 					var nextIndex = (index == slideList.length - 1 ? 0 : index + 1);
 					var nextObj = slideList[nextIndex].css("left", $(window).width());
 					moveRtoL(pointer, nextIndex, currentObj, nextObj);
-				}, 5000);
+				}, 10000);*/
 			})();
 		},
 		
