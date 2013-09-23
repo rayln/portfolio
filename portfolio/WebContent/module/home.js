@@ -12,16 +12,24 @@ define(function(require, exports, module){
 	body.slide([
         {
         	bg: "styles/default/images/home/goldfish-bg.png",
-        	html: goldfish
+        	html: goldfish,
+        	style: {
+        		'background-size': 'cover',
+        		'background-position': '50% 50%'
+        	}
         },{
         	bg: "styles/default/images/home/moonrise-bg.png",
-        	html: moonrise
+        	html: moonrise,
+        	style: {
+        		'background-size': 'cover',
+        		'background-position': '50% 50%'
+        	}
         },{
         	bg: "styles/default/images/home/fishnet-bg.png",
         	html: fishnet,
         	style: {
-        		'background-size': '100% auto',
-        		'background-position': '50% 80%'
+        		'background-size': 'cover',
+        		'background-position': '50% 50%'
         	}
         }
 	]);

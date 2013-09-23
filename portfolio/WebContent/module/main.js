@@ -65,18 +65,17 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 		text: 'Navi',
 		catelogTitle:"HOME",
 		catelog:[
-		         {name: "Portfolio"},
-		         {name: "About us"},
-		         {name: "Concepts"},
-		         {name: "Deliverd"},
-		         {name: "Usability"}
+	         {name: "Portfolio"},
+	         {name: "About us"},
+	         {name: "Concepts"},
+	         {name: "Deliverd"},
+	         {name: "Usability"}
 		]
 	});
 	
 	
 	//bind event
 	(function(){
-		
 		//resize
 		$(window).on("resize", function(){
 			var currentIndex = $(".pf-main-body > .selected").data("module-index");
