@@ -363,14 +363,14 @@ define(function(require, exports, module){
 					navigate.pointer.css("left", ponintLeft);
 				});
 				
-				setInterval(function(){
+				/*setInterval(function(){
 					var pointer = navigate.pointer.find(".selected");
 					var index = pointer.data("slide-index");
 					var currentObj = slideList[index];
 					var nextIndex = (index == slideList.length - 1 ? 0 : index + 1);
 					var nextObj = slideList[nextIndex].css("left", $(window).width());
 					moveRtoL(pointer, nextIndex, currentObj, nextObj);
-				}, 10000);
+				}, 10000);*/
 			})();
 		},
 		

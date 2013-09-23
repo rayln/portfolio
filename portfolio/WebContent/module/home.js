@@ -11,21 +11,21 @@ define(function(require, exports, module){
 	var fishnet = "<div class='content'><div class='content-left'></div><div class='content-right' style='display: table; width: 400px; margin-right: 50px;' ><div style='vertical-align: middle;display: table-cell;'><p style='font-size: 59px; color: white; margin: 0;'>Moonrise</p><p style='font-size: 18px; color: white;margin: 0;'>By this app you can see your photos in different device and also receive the shared photos from your friends</p><div style='margin-top: 15px;' class='store-button'>Google Play</div></div></div>";
 	body.slide([
         {
-        	bg: "styles/default/images/home/goldfish-bg.png",
+        	bg: "styles/default/images/home/goldfish-bg.jpg",
         	html: goldfish,
         	style: {
         		'background-size': 'cover',
         		'background-position': '50% 50%'
         	}
         },{
-        	bg: "styles/default/images/home/moonrise-bg.png",
+        	bg: "styles/default/images/home/moonrise-bg.jpg",
         	html: moonrise,
         	style: {
         		'background-size': 'cover',
         		'background-position': '50% 50%'
         	}
         },{
-        	bg: "styles/default/images/home/fishnet-bg.png",
+        	bg: "styles/default/images/home/fishnet-bg.jpg",
         	html: fishnet,
         	style: {
         		'background-size': 'cover',
