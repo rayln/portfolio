@@ -6,7 +6,7 @@ seajs.use(['./module/home.js','./module/about.js','jquerymin','jqueryfn'], funct
 			height: $(window).height()
 		}
 	};
-	
+	$.test();
 	// init
 	(function init(){
 		$(".module").each(function(index, obj){
